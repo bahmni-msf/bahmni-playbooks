@@ -37,8 +37,9 @@
   sudo: yes
   when: openmrs_backup_file.stat.exists == True
 
-- name: Install bahmni-emr from bahmni-repo
-  yum: name="bahmni-emr-{{ bahmni_emr_version }}" state=present
+- name: Install bahmni-emr from msf repo
+  command: yum install https://s3.ap-south-1.amazonaws.com/bahmni-emr-rpm-0.92/bahmni-emr-0.92-1.noarch.rpm -y
+  ignore_errors: yes
 
 - name: Stop openmrs
   systemd: name=openmrs state=stopped
