@@ -39,10 +39,6 @@
     mode=755
   register: my_cnf
 
-- name: create symlink to /var/run/mysqld
-  command: ln -s /var/lib/mysql/mysqld.pid /var/run/mysqld/mysqld.pid
-  ignore_errors: yes
-
 - name: Stop Mysql Service
   systemd: name=mysqld state=stopped
   when: my_cnf.changed == true
